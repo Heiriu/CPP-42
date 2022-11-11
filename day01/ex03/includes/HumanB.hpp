@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:20:50 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/08 15:32:27 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/11 09:07:44 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ class HumanB
 	private:
 	
 		std::string	_name;
-		Weapon&		_weapon;
+		Weapon*		_weapon;
 
 	public:
 
-		HumanB();
-		~HumanB();
 		HumanB(std::string name);
+		~HumanB();
+		void	setWeapon(Weapon &weapon);
 		void	attack();
 };
 
