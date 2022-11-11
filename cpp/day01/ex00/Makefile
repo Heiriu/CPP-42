@@ -5,16 +5,22 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/11 11:36:47 by thbierne          #+#    #+#              #
-#    Updated: 2022/10/27 15:07:53 by thbierne         ###   ########.fr        #
+#    Created: 2022/11/01 13:01:24 by thbierne          #+#    #+#              #
+#    Updated: 2022/11/01 13:03:28 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = BraiiiiiiinnnzzzZ
 
-SRCS = megaphone.cpp	\
+SRCS = main.cpp				\
+		Zombie.cpp			\
+		newZombie.cpp		\
+		randomChump.cpp		\
 
-OBJS = megaphone.o		\
+OBJS = main.o				\
+		Zombie.o			\
+		newZombie.o			\
+		randomChump.o		\
 
 CC = g++
 
@@ -25,7 +31,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $<
+	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $(SRCS)
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Creating:\033[0m" $(NAME)
 

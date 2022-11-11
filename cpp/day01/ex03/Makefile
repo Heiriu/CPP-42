@@ -5,16 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/10/11 11:36:47 by thbierne          #+#    #+#              #
-#    Updated: 2022/10/27 15:07:53 by thbierne         ###   ########.fr        #
+#    Created: 2022/11/07 15:40:35 by thbierne          #+#    #+#              #
+#    Updated: 2022/11/08 15:36:47 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = megaphone
+NAME = Violence
 
-SRCS = megaphone.cpp	\
+SRCS = srcs/main.cpp				\
+		srcs/HumanA.cpp				\
+		srcs/HumanB.cpp				\
+		srcs/Weapon.cpp				\
 
-OBJS = megaphone.o		\
+OBJS = $(SRCS:.cpp=.o)
 
 CC = g++
 
@@ -25,7 +28,7 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $<
+	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $(SRCS)
 	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Creating:\033[0m" $(NAME)
 
