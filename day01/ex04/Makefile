@@ -5,18 +5,15 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/01 13:01:24 by thbierne          #+#    #+#              #
-#    Updated: 2022/11/11 09:52:01 by thbierne         ###   ########.fr        #
+#    Created: 2022/11/11 09:39:52 by thbierne          #+#    #+#              #
+#    Updated: 2022/11/11 10:59:35 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = zombieHorde
+NAME = Sed
 
-SRCS = main.cpp				\
-		Zombie.cpp			\
-		zombieHorde.cpp		\
-
-INCLUDES = Zombie.hpp
+SRCS = srcs/main.cpp				\
+		srcs/Replace.cpp			\
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -30,7 +27,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $(SRCS)
-	@$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(NAME)
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Creating:\033[0m" $(NAME)
 
 clean:
