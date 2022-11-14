@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 10:16:19 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/11 15:17:53 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/14 13:29:31 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,12 @@ void	Replace::replaceFile()
 	std::ifstream fichier(_namefile, std::ios::in);
 	std::ofstream out(_replacefile, std::ios::out);
 	std::string contenu;
-	std::size_t found = _s1.find(_s2);
+	std::size_t found = 0;
 	std::size_t lenghts1 = _s1.length();
 
 	while (getline(fichier, contenu))
 	{
-		found = contenu.find(_s1);
+		found = contenu.find(_s1, found);
 		while (found!=std::string::npos)
 		{
 			contenu.erase(found, lenghts1);
