@@ -6,19 +6,17 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 13:41:34 by thbierne          #+#    #+#              #
-#    Updated: 2022/10/12 15:52:09 by thbierne         ###   ########.fr        #
+#    Updated: 2022/11/07 13:55:35 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = my_awesome_phonebook
 
-SRCS = Repertory.cpp	\
-		PhoneBook.cpp	\
-		Contact.cpp		\
+SRCS = srcs/Repertory.cpp		\
+		srcs/PhoneBook.cpp		\
+		srcs/Contact.cpp		\
 
-OBJS = Repertory.o		\
-		PhoneBook.o		\
-		Contact.o		\
+OBJS = $(SRCS:.cpp=.o)
 
 CC = g++
 
@@ -35,11 +33,11 @@ $(NAME): $(OBJS)
 
 clean:
 	@$(RM) $(OBJS)
-	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Delete:\033[0m" $(OBJS)
+	@echo "\033[0;32m [OK] \033[0m       \033[0;31m Delete:\033[0m" $(OBJS)
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Delete:\033[0m" $(NAME)
+	@echo "\033[0;32m [OK] \033[0m       \033[0;31m Delete:\033[0m" $(NAME)
 
 re: fclean all
 

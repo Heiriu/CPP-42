@@ -6,7 +6,7 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 11:36:47 by thbierne          #+#    #+#              #
-#    Updated: 2022/10/27 15:07:53 by thbierne         ###   ########.fr        #
+#    Updated: 2022/11/07 13:50:12 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = megaphone
 
 SRCS = megaphone.cpp	\
 
-OBJS = megaphone.o		\
+OBJS = $(SRCS:.cpp=.o)		\
 
 CC = g++
 

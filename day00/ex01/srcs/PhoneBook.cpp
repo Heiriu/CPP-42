@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:14:37 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/08 10:10:38 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/15 10:05:20 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,18 @@
 void    readLineSafe(std::string& str);
 void	clear();
 
-void	print_space(int nbr)
+void	print_space()
 {
-	int i;
-
-	i = 10 - nbr;
-	while (i > 0)
-	{
-		std::cout << ' ';
-		i--;
-	}
+		std::cout << std::setfill (' ') << std::setw (10);
 }
 
 void	PhoneBook::print_phone_contact(Contact c)
 {
-	std::cout << "First Name:" << c.printFirst(c) << std::endl;
-	std::cout << "Last Name:" << c.printLast(c) << std::endl;
-	std::cout << "Nick Name:" << c.printNickName(c) << std::endl;
-	std::cout << "Phone Number:" << c.printPhoneNumber(c) << std::endl;
-	std::cout << "Darkest Secret:" << c.printDarkest(c) << std::endl;
+	std::cout << "\033[0;34mFirst Name: \033[0m" << c.printFirst(c) << std::endl;
+	std::cout << "\033[0;34mLast Name: \033[0m" << c.printLast(c) << std::endl;
+	std::cout << "\033[0;34mNick Name: \033[0m" << c.printNickName(c) << std::endl;
+	std::cout << "\033[0;34mPhone Number: \033[0m" << c.printPhoneNumber(c) << std::endl;
+	std::cout << "\033[0;34mDarkest Secret: \033[0m" << c.printDarkest(c) << std::endl;
 }
 
 void	PhoneBook::print_tab_contact(PhoneBook phone, int index)
@@ -52,8 +45,8 @@ void	PhoneBook::print_tab_contact(PhoneBook phone, int index)
 	{
 		std::cout << "|         " << i << "|";
 		test = contact.printFirst(phone.contact[i - 1]);
-		if (test.length() < 10)
-			print_space(test.length());
+		if (test.length() <= 10)
+			print_space();
 		else if (test.length() > 10)
 		{
 			test.resize(9, ' ');
@@ -61,8 +54,8 @@ void	PhoneBook::print_tab_contact(PhoneBook phone, int index)
 		}
 		std::cout << test << '|';
 		test = contact.printLast(phone.contact[i - 1]);
-		if (test.length() < 10)
-			print_space(test.length());
+		if (test.length() <= 10)
+			print_space();
 		else if (test.length() > 10)
 		{
 			test.resize(9, ' ');
@@ -70,8 +63,8 @@ void	PhoneBook::print_tab_contact(PhoneBook phone, int index)
 		}
 		std::cout << test << '|';
 		test = contact.printNickName(phone.contact[i - 1]);
-		if (test.length() < 10)
-			print_space(test.length());
+		if (test.length() <= 10)
+			print_space();
 		else if (test.length() > 10)
 		{
 			test.resize(9, ' ');

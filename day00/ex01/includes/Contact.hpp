@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 09:41:41 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/08 09:30:13 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:55:09 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <iomanip>
 #include <stdlib.h>
 
 class Contact

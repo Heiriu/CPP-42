@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:29:56 by thbierne          #+#    #+#             */
-/*   Updated: 2022/10/11 11:32:58 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/15 09:49:48 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,13 @@ int main(int argc, char **argv)
 	else
 	{
 		y = 0;
+		std::string str;
 		while (argv[++y])
 		{
 			i = -1;
-			while (argv[y][++i])
-			{
-				if (argv[y][i] >= 'a' && argv[y][i] <= 'z')
-					std::cout << (char)(argv[y][i] - 32);
-				else
-					std::cout << (char)(argv[y][i]);
-			}
+			str = argv[y];
+			while (str[++i])
+					std::cout << (char)toupper(str[i]);
 		}
 	}
 	std::cout << std::endl;
