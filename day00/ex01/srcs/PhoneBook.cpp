@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:14:37 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/15 10:05:20 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/16 09:20:51 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	PhoneBook::print_tab_contact(PhoneBook phone, int index)
 	Contact		contact;
 
 	i = 1;
-	std::cout << "_____________________________________________\n";
-    std::cout << "|          |          |          |          |\n";
+	std::cout << "_____________________________________________" << std::endl;
+    std::cout << "|          |          |          |          |" << std::endl;
 	std::cout << "|  index   |first name|last  name|nick  name|" << std::endl;
 	std::cout << "|__________|__________|__________|__________|" << std::endl;
 	while (i <= (index + 1) && i < 9)

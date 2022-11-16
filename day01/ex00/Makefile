@@ -6,7 +6,7 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 13:01:24 by thbierne          #+#    #+#              #
-#    Updated: 2022/11/01 13:03:28 by thbierne         ###   ########.fr        #
+#    Updated: 2022/11/16 11:01:57 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ OBJS = main.o				\
 		newZombie.o			\
 		randomChump.o		\
 
-CC = g++
+CC = c++
 
 CFLAGS = -Werror -Wall -Wextra -std=c++98
 

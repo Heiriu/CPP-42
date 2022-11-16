@@ -6,7 +6,7 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/01 14:43:25 by thbierne          #+#    #+#              #
-#    Updated: 2022/11/01 14:44:01 by thbierne         ###   ########.fr        #
+#    Updated: 2022/11/16 11:02:08 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = main.cpp				\
 
 OBJS = main.o				\
 
-CC = g++
+CC = c++
 
 CFLAGS = -Werror -Wall -Wextra -std=c++98
 

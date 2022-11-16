@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 10:02:03 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/08 10:13:52 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/16 13:58:05 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void    readLineSafe(std::string& str)
     bool    fail = false;
 
     do {
-        std::cin >> str;
+		getline(std::cin, str);
         if (std::cin.eof()) {
             if (std::cin.fail()) {
                 fail = true;

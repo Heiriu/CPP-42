@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:12:42 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/14 14:08:13 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/16 10:54:41 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	Harl::complain(std::string level)
 {
-	std::string comp[4] = {"debug", "info", "warning", "error"};
+	std::string comp[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*fct[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 
 	for (int i = 0; i < 4; i++)
@@ -25,16 +25,22 @@ void	Harl::complain(std::string level)
 			{
 				case 0:
 				{
+					(this->*fct[i++])();
+					(this->*fct[i++])();
+					(this->*fct[i++])();
 					(this->*fct[i])();
 					break;
 				}
 				case 1:
 				{
+					(this->*fct[i++])();
+					(this->*fct[i++])();
 					(this->*fct[i])();
 					break;
 				}
 				case 2:
 				{
+					(this->*fct[i++])();
 					(this->*fct[i])();
 					break;
 				}
@@ -45,6 +51,8 @@ void	Harl::complain(std::string level)
 				}
 			}
 		}
+		else if (i == 3)
+			std::cout << " [ Probably complaining about insignificant problems ] " << std::endl;
 	}
 }
 
@@ -55,21 +63,18 @@ void	Harl::debug()
 {
 	std::cout << " [DEBUG] " << std::endl;
 	std::cout << "This is Debug" << std::endl << std::endl;
-	info();
 }
 
 void	Harl::info()
 {
 	std::cout << " [INFO] " << std::endl;
 	std::cout << "This is info" << std::endl << std::endl;
-	warning();
 }
 
 void	Harl::warning()
 {
 	std::cout << " [WARNING] " << std::endl;
 	std::cout << "This is warning" << std::endl << std::endl;
-	error();
 }
 
 void	Harl::error() 

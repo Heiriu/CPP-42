@@ -6,7 +6,7 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/07 13:41:34 by thbierne          #+#    #+#              #
-#    Updated: 2022/11/07 13:55:35 by thbierne         ###   ########.fr        #
+#    Updated: 2022/11/16 11:01:46 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRCS = srcs/Repertory.cpp		\
 
 OBJS = $(SRCS:.cpp=.o)
 
-CC = g++
+CC = c++
 
 CFLAGS = -Werror -Wall -Wextra -std=c++98
 

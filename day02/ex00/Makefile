@@ -5,20 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/01 13:01:24 by thbierne          #+#    #+#              #
-#    Updated: 2022/11/16 11:02:03 by thbierne         ###   ########.fr        #
+#    Created: 2022/11/16 10:06:39 by thbierne          #+#    #+#              #
+#    Updated: 2022/11/16 12:45:11 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = zombieHorde
+NAME = Fixed
 
-SRCS = main.cpp				\
-		Zombie.cpp			\
-		zombieHorde.cpp		\
+SRCS = srcs/main.cpp				\
+		srcs/Fixed.cpp				\
 
-INCLUDES = Zombie.hpp
-
-OBJS = $(SRCS:.cpp=.o)
+OBJS = $(SRCS:.cpp=.o)		\
 
 CC = c++
 
@@ -29,8 +26,8 @@ RM = rm -f
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $(SRCS)
-	@$(CC) $(CFLAGS) $(SRCS) $(INCLUDES) -o $(NAME)
+	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Compiling:\033[0m" $<
+	@$(CC) $(CFLAGS) $(SRCS) -o $(NAME)
 	@echo "\033[0;32m [OK] \033[0m       \033[0;33m Creating:\033[0m" $(NAME)
 
 clean:

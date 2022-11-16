@@ -6,7 +6,7 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/11 11:36:47 by thbierne          #+#    #+#              #
-#    Updated: 2022/11/07 13:50:12 by thbierne         ###   ########.fr        #
+#    Updated: 2022/11/16 11:01:42 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS = megaphone.cpp	\
 
 OBJS = $(SRCS:.cpp=.o)		\
 
-CC = g++
+CC = c++
 
 CFLAGS = -Werror -Wall -Wextra -std=c++98
 
