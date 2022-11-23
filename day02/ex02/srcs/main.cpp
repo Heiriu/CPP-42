@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/16 12:43:12 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/18 10:22:23 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/23 15:25:12 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,15 @@
 int	main()
 {
 	Fixed a;
-	Fixed const b( 10 );
-	Fixed const c( 42.42f );
-	Fixed const d( b );
+	Fixed const b( Fixed( 5.05f ) * Fixed( 2 ) );
 
-	a = Fixed( 42.42f );
-	a + b;
-	std::cout << "a is " << a << std::endl;
-	a - b;
-	std::cout << "a is " << a << std::endl;
-	a * b;
-	std::cout << "a is " << a << std::endl;
-	a / b;
-	std::cout << "a is " << a << std::endl;
-	a++;
-	std::cout << "a is " << a << std::endl;
-	std::cout << "b is " << b << std::endl;
-
+	std::cout << a << std::endl;
+	std::cout << ++a << std::endl;
+	std::cout << a << std::endl;
+	std::cout << a++ << std::endl;
+	std::cout << a << std::endl;
 	
-	return (0);
+	std::cout << b << std::endl;
+	
+	std::cout << Fixed::max( a, b ) << std::endl;
 }

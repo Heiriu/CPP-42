@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 12:14:37 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/16 09:20:51 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/11/21 10:53:54 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ void	PhoneBook::searchContact(PhoneBook phone, int nbr)
 		std::cout << "enter a number between 1 to 8: ";
 		readLineSafe(str);
 		clear();
-		if ((str[0] >= '1' || str[0] <= '8') && !str[1])
+		if ((str[0] >= '1' && str[0] <= '8') && !str[1])
 		{
 			c = str[0] - 48;
 			if (c > nbr + 1)
