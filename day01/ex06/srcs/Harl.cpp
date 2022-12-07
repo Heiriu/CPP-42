@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 16:12:42 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/16 10:54:41 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/12/07 12:44:01 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,29 +24,14 @@ void	Harl::complain(std::string level)
 			switch (i)
 			{
 				case 0:
-				{
 					(this->*fct[i++])();
-					(this->*fct[i++])();
-					(this->*fct[i++])();
-					(this->*fct[i])();
-					break;
-				}
 				case 1:
-				{
 					(this->*fct[i++])();
-					(this->*fct[i++])();
-					(this->*fct[i])();
-					break;
-				}
 				case 2:
-				{
 					(this->*fct[i++])();
-					(this->*fct[i])();
-					break;
-				}
 				case 3:
 				{
-					(this->*fct[i])();
+					(this->*fct[i++])();
 					break;
 				}
 			}

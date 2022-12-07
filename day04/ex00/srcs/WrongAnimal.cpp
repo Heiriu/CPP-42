@@ -1,38 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.cpp                                         :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 10:47:48 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/05 10:33:57 by thbierne         ###   ########.fr       */
+/*   Created: 2022/12/05 11:33:47 by thbierne          #+#    #+#             */
+/*   Updated: 2022/12/05 11:34:47 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/Animal.hpp"
+#include "../includes/WrongAnimal.hpp"
 
-Animal::Animal()
+WrongAnimal::WrongAnimal()
 {
-	std::cout << "\033[0;32mAnimal Default constructor created\033[0m" << std::endl;
-	setType("Animal");
+	std::cout << "\033[0;32mWrongAnimal Default constructor created\033[0m" << std::endl;
+	setType("WrongAnimal");
 }
 
-Animal::~Animal()
+WrongAnimal::~WrongAnimal()
 {
-	std::cout << "\033[0;31mAnimal Default Destructor called\033[0m" << std::endl;
+	std::cout << "\033[0;31mWrongAnimal Default Destructor called\033[0m" << std::endl;
 }
 
-void	Animal::makeSound() const
+void	WrongAnimal::makeSound() const
 {
-	std::cout << "animal noises" << std::endl;
+	std::cout << "WrongAnimal noises" << std::endl;
 }
 
 
 
 //		setter		//
 
-void	Animal::setType(std::string type)
+void	WrongAnimal::setType(std::string type)
 {
 	_type = type;
 }
@@ -41,7 +41,7 @@ void	Animal::setType(std::string type)
 
 //		getter		//
 
-std::string	Animal::getType() const
+std::string	WrongAnimal::getType() const
 {
 	return (_type);
 }

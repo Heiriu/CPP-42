@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/08 13:36:39 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/11 08:59:42 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/12/07 15:06:23 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void			Weapon::setType(std::string str)
 	_weapon = str;
 }
 
-Weapon&			Weapon::getType(Weapon &weapon)
+Weapon&			const Weapon::getType(Weapon &weapon)
 {
 	return (weapon);
 }

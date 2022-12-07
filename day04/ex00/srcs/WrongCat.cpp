@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 11:31:13 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/05 10:46:52 by thbierne         ###   ########.fr       */
+/*   Created: 2022/12/05 11:06:40 by thbierne          #+#    #+#             */
+/*   Updated: 2022/12/05 11:13:07 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#include "../includes/WrongCat.hpp"
 
-#include "Animal.hpp"
-
-class Dog : public Animal
+WrongCat::WrongCat()
 {
+	std::cout << "\033[0;32mWrong Cat Default constructor created\033[0m" << std::endl;
+	setType("Animal");
+}
 
-	public:
+WrongCat::~WrongCat()
+{
+	std::cout << "\033[0;31mWrong Cat Destructor called\033[0m" << std::endl;
+}
 
-		Dog();
-		~Dog();
-		
-		void makeSound() const;
-
-};
-
-#endif
+void	WrongCat::makeSound() const
+{
+	std::cout << "WrongCat noises" << std::endl;
+}

@@ -1,30 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   WrongCat.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/25 11:31:13 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/05 10:46:52 by thbierne         ###   ########.fr       */
+/*   Created: 2022/12/05 11:11:00 by thbierne          #+#    #+#             */
+/*   Updated: 2022/12/05 11:11:43 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-#define DOG_HPP
+#ifndef WRONGCAT_HPP
+#define WRONGCAT_HPP
 
-#include "Animal.hpp"
+#include "WrongAnimal.hpp"
 
-class Dog : public Animal
+class WrongCat : public WrongAnimal
 {
 
 	public:
 
-		Dog();
-		~Dog();
-		
-		void makeSound() const;
+		WrongCat();
+		~WrongCat();
 
+		void makeSound() const;
 };
 
 #endif

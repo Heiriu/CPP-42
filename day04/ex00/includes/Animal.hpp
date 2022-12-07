@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 10:43:37 by thbierne          #+#    #+#             */
-/*   Updated: 2022/11/25 12:49:31 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/12/05 10:53:13 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ class Animal
 		Animal();
 		~Animal();
 
-		void makeSound() const;
+		virtual void makeSound() const;
 
 		void 		setType(std::string type);
-
 		std::string	getType() const;
 
 	protected:

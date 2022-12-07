@@ -6,11 +6,11 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/25 10:28:19 by thbierne          #+#    #+#              #
-#    Updated: 2022/12/05 11:32:50 by thbierne         ###   ########.fr        #
+#    Updated: 2022/12/06 16:04:22 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Polymorphisme
+NAME = AnimalBrain
 
 SRCS = srcs/main.cpp			\
 		srcs/Animal.cpp			\
@@ -18,12 +18,13 @@ SRCS = srcs/main.cpp			\
 		srcs/Cat.cpp			\
 		srcs/WrongAnimal.cpp	\
 		srcs/WrongCat.cpp		\
+		srcs/Brain.cpp			\
 
-OBJS = $(SRCS:.cpp=.o)				\
+OBJS = $(SRCS:.cpp=.o)			\
 
 CC = c++
 
-CFLAGS = -Werror -Wall -Wextra -std=c++98
+CFLAGS = -std=c++98
 
 RM = rm -f
 

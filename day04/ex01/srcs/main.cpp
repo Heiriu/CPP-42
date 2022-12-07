@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/25 10:36:26 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/07 10:36:52 by thbierne         ###   ########.fr       */
+/*   Updated: 2022/12/07 13:55:58 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,30 @@
 
 int	main()
 {
-	const Animal* meta = new Animal();
-	const Animal* j = new Dog();
-	const Animal* i = new Cat();
-	const WrongAnimal* k = new WrongAnimal();
-	const WrongAnimal* l = new WrongCat();
+	const Animal* animal[10];
+	int i;
 
-	std::cout << std::endl << meta->getType() << " " << std::endl;
-	std::cout << j->getType() << " " << std::endl;
-	std::cout << i->getType() << " " << std::endl << std::endl;
-	
-	i->makeSound(); //will output the cat sound!
-	j->makeSound(); //will output the dog sound!
-	meta->makeSound(); //will output the animal sound!
+	i = 0;
+	while (i < 5)
+	{
+		animal[i] = new Dog();
+		std::cout << std::endl;
+		i++;
+	}
+	while (i < 10)
+	{
+		animal[i] = new Cat();
+		std::cout << std::endl;
+		i++;
+	}
 
-	std::cout << std::endl;
-
-	k->makeSound(); //will output the wrongAnimal sound!
-	l->makeSound(); //will output the wrongcat sound!
-
-	std::cout << std::endl;
-
-	delete meta;
-	delete j;
-	delete i;
-	delete k;
-	delete l;
-
+	i = 0;
+	while (i < 10)
+	{
+		animal[i]->makeSound();
+		delete animal[i];
+		std::cout << std::endl;
+		i++;
+	}
 	return (0);
 }
