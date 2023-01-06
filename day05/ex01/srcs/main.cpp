@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:17:47 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/21 15:31:43 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 09:47:31 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,12 @@ int main()
 {
 	Bureaucrat john("John", 2);
 	Bureaucrat jim("Jim", 149);
-	Form A("2B", 150, 70);
+	Form A("A", 150, 70);
 
 	try
 	{
-		Form B("2B", 151, 70);
-		std::cout << john << std::endl;
-		A.beSigned(john);
-		std::cout << jim << std::endl;
 		A.beSigned(jim);
-		std::cout << A << std::endl;
+		A.beSigned(john);
 	}
 	catch(const std::exception& e)
 	{

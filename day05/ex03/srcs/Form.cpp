@@ -6,20 +6,21 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:47:04 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/06 13:22:26 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:19:19 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Form.hpp"
+#include "../includes/Bureaucrat.hpp"
 
 /* 			Constructor  			*/
 
-Form::Form() : _name("default"), _sign(0), _toSign(150), _toExec(150)
+Form::Form() : _name("default"), _target("default"), _sign(0), _toSign(150), _toExec(150)
 {
 	std::cout << "\033[0;32mForm constructor created\033[0m" << std::endl;
 }
 
-Form::Form(std::string name, int toSign, int toExec) : _name(name), _toSign(toSign), _toExec(toExec)
+Form::Form(std::string const name, std::string const target, int toSign, int toExec) : _name(name), _target(target), _sign(0), _toSign(toSign), _toExec(toExec)
 {
 	std::cout << "\033[0;32mForm constructor created\033[0m" << std::endl;
 	if (_toSign > 150)
@@ -30,11 +31,10 @@ Form::Form(std::string name, int toSign, int toExec) : _name(name), _toSign(toSi
 		throw Form::GradeTooLowException();
 	else if (_toExec < 1)
 		throw Form::GradeTooHighException();
-	_sign = 0;
 }
 
 
-/* 			Copy constructor 		Operation overload			*/
+/* 			Copy constructor and assignment			*/
 
 Form::Form(const Form &p)
 {
@@ -67,6 +67,7 @@ Form::~Form()
 std::ostream &operator<<(std::ostream &out, const Form &form)
 {
     out << "\033[0;33mname : \033[0m" << form.getName() << std::endl;
+	out << "\033[0;33mtarget : \033[0m" << form.getTarget() << std::endl;
 	out << "\033[0;33msign : \033[0m" << form.getSign() << std::endl;
 	out << "\033[0;33mto sign : \033[0m" << form.getToSign() << std::endl;
 	out << "\033[0;33mto execute : \033[0m" << form.getToExec() << std::endl;
@@ -80,6 +81,11 @@ std::ostream &operator<<(std::ostream &out, const Form &form)
 std::string	Form::getName() const
 {
 	return (_name);
+}
+
+std::string	Form::getTarget() const
+{
+	return (_target);
 }
 
 bool Form::getSign() const
@@ -96,6 +102,26 @@ int	Form::getToExec() const
 {
 	return (_toExec);
 }
+
+
+
+/*			setter			*/
+
+void	Form::setSign(int sign)
+{
+	_sign = sign;
+}
+
+void	Form::setToSign(int toSign)
+{
+	_toSign = toSign;
+}
+
+void	Form::setToExec(int toExec)
+{
+	_toExec = toExec;
+}
+
 
 
 /*				public fonction			*/
@@ -128,9 +154,26 @@ void	Form::signForm(Bureaucrat const &worker)
 		std::cout << worker.getName() << "\033[0;31m couldn't execute form \033[0m" << getName() << "\033[0;31m because grade is too low\033[0m" << std::endl;
 }
 
+void	Form::launch()
+{
+	
+}
+
+void 	Form::execute(Bureaucrat const & executor)
+{
+	if (getToExec() >= executor.getGrade())
+	{
+		if (getSign() == 1)
+			launch();
+		else
+			throw Form::FormNotSign();
+	}
+	else
+		throw Form::GradeTooLowTooSign();
+}
 
 
-/*		exception handle		*/
+/*			exception handle		*/
 
 const char* Form::GradeTooHighException::what() const throw()
 {
@@ -138,6 +181,16 @@ const char* Form::GradeTooHighException::what() const throw()
 }
 
 const char* Form::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low\n");
+}
+
+const char* Form::FormNotSign::what() const throw()
+{
+	return ("Grade too high\n");
+}
+
+const char* Form::GradeTooLowTooSign::what() const throw()
 {
 	return ("Grade too low\n");
 }

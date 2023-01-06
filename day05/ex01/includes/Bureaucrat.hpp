@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:11:20 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/19 13:07:26 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:23:04 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,7 @@ class Bureaucrat
 			
 			public:
 		
-				const char* what() const throw()
-				{
-					return ("Grade too high\n");
-				}
+				const char* what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception
@@ -54,10 +51,7 @@ class Bureaucrat
 		
 			public:
 		
-				const char* what() const throw()
-				{
-					return ("Grade too low\n");
-				}
+				const char* what() const throw();
 		};
 
 	private:

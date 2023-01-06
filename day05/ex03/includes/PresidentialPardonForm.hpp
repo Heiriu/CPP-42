@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 07:42:32 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/02 09:06:17 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:55:13 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,10 @@ class PresidentialPardonForm : public Form
 	
 		PresidentialPardonForm();
 		PresidentialPardonForm(const std::string target);
+		PresidentialPardonForm(const std::string name, const std::string target);
+
 		~PresidentialPardonForm();
+		
 		PresidentialPardonForm(PresidentialPardonForm const &p);
 		void operator=(const PresidentialPardonForm &p);
 

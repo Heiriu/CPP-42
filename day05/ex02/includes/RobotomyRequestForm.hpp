@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 10:23:58 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/23 15:23:36 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/02 09:21:04 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include "Form.hpp"
 
 class RobotomyRequestForm : public Form

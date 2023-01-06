@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:45:55 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/23 15:59:09 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:25:17 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <iostream>
 #include <string>
+#include <fstream>
+
+class Bureaucrat;
 
 class Form
 {
@@ -38,6 +41,7 @@ class Form
 		void setToExec(int toExec);
 
 		void beSigned(Bureaucrat const &worker);
+		void signForm(Bureaucrat const &worker);
 		virtual void launch() = 0;
 		void  execute(Bureaucrat const &executor);
 
@@ -46,10 +50,7 @@ class Form
 			
 			public:
 		
-				const char* what() const throw()
-				{
-					return ("Grade too high\n");
-				}
+				const char* what() const throw();
 		};
 
 		class GradeTooLowException : public std::exception
@@ -57,10 +58,7 @@ class Form
 		
 			public:
 		
-				const char* what() const throw()
-				{
-					return ("Grade too low\n");
-				}
+				const char* what() const throw();
 		};
 
 		class FormNotSign : public std::exception
@@ -68,10 +66,7 @@ class Form
 
 			public:
 
-				const char* what() const throw()
-				{
-					return ("Form not sign\n");
-				}
+				const char* what() const throw();
 		};
 
 		class GradeTooLowTooSign : public std::exception
@@ -79,10 +74,7 @@ class Form
 			
 			public:
 
-				const char* what() const throw()
-				{
-					return ("Too low to execute the form\n");
-				}
+				const char* what() const throw();
 		};
 
 	private:

@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:47:04 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/23 15:59:23 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:24:40 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,8 +136,13 @@ void	Form::beSigned(Bureaucrat const &worker)
 	{
 		throw Form::GradeTooLowException();
 	}
+	signForm(worker);
+}
+
+void	Form::signForm(Bureaucrat const &worker)
+{
 	if (_sign == 1)
-		std::cout << worker.getName() << "\033[0;31m couldn’t sign \033[0m" << getName() << "\033[0;31m because he is already sign\033[0m" << std::endl;
+		std::cout << worker.getName() << "\033[0;31m couldn't sign \033[0m" << getName() << "\033[0;31m because he is already sign\033[0m" << std::endl;
 	else
 	{
 		_sign = 1;
@@ -146,7 +151,7 @@ void	Form::beSigned(Bureaucrat const &worker)
 	if (_toExec >= worker.getGrade())
 		std::cout << worker.getName() << "\033[0;33m can execute the form \033[0m" << getName() << std::endl;
 	else
-		std::cout << worker.getName() << "\033[0;31m couldn’t execute form \033[0m" << getName() << "\033[0;31m because grade is too low\033[0m" << std::endl;
+		std::cout << worker.getName() << "\033[0;31m couldn't execute form \033[0m" << getName() << "\033[0;31m because grade is too low\033[0m" << std::endl;
 }
 
 void	Form::launch()
@@ -159,12 +164,34 @@ void 	Form::execute(Bureaucrat const & executor)
 	if (getToExec() >= executor.getGrade())
 	{
 		if (getSign() == 1)
-		{
 			launch();
-		}
 		else
-			throw Form::Form::GradeTooLowTooSign();
+			throw Form::FormNotSign();
 	}
 	else
-		throw Form::FormNotSign();
+		throw Form::GradeTooLowTooSign();
+}
+
+
+
+/*			exception handle		*/
+
+const char* Form::GradeTooHighException::what() const throw()
+{
+	return ("Grade too high\n");
+}
+
+const char* Form::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low\n");
+}
+
+const char* Form::FormNotSign::what() const throw()
+{
+	return ("Grade too high\n");
+}
+
+const char* Form::GradeTooLowTooSign::what() const throw()
+{
+	return ("Grade too low\n");
 }

@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/21 13:45:55 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/06 13:22:43 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:18:46 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,9 @@
 
 #include <iostream>
 #include <string>
-#include "Bureaucrat.hpp"
+#include <fstream>
+
+class Bureaucrat;
 
 class Form
 {
@@ -23,18 +25,25 @@ class Form
 	public:
 
 		Form();
-		Form(std::string name, int toSign, int toExec);
-		~Form();
+		Form(std::string const name, std::string const target, int toSign, int toExec);
+		virtual ~Form();
 		Form(const Form &p);
 		void	operator=(const Form &p);
 
 		std::string	getName() const;
+		std::string	getTarget() const;
 		bool getSign() const;
 		int	getToSign() const;
 		int	getToExec() const;
 
+		void setSign(int sign);
+		void setToSign(int toSign);
+		void setToExec(int toExec);
+
 		void beSigned(Bureaucrat const &worker);
 		void signForm(Bureaucrat const &worker);
+		virtual void launch() = 0;
+		void  execute(Bureaucrat const &executor);
 
 		class GradeTooHighException : public std::exception
 		{
@@ -52,9 +61,26 @@ class Form
 				const char* what() const throw();
 		};
 
+		class FormNotSign : public std::exception
+		{
+
+			public:
+
+				const char* what() const throw();
+		};
+
+		class GradeTooLowTooSign : public std::exception
+		{
+			
+			public:
+
+				const char* what() const throw();
+		};
+
 	private:
 	
 		std::string const 	_name;
+		std::string const 	_target;
 		bool 				_sign;
 		int					_toSign;
 		int					_toExec;

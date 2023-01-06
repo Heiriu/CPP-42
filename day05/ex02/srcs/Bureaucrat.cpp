@@ -6,13 +6,12 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:12:09 by thbierne          #+#    #+#             */
-/*   Updated: 2022/12/23 16:00:09 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:20:56 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
 #include "../includes/Form.hpp"
-
 
 /* 			Constructor  			*/
 
@@ -108,10 +107,26 @@ void	Bureaucrat::decrementGrade()
 	_grade++;
 }
 
-void	Bureaucrat::executeForm(Form const & form)
+void	Bureaucrat::executeForm(Form& form) const
 {
 	if (_grade <= form.getToExec())
+	{
 		std::cout << getName() << "\033[0;33m can execute the form \033[0m" << form.getName() << std::endl;
+		form.beSigned(*this);
+	}
 	else
 		std::cout << getName() << "\032[0;31m can't execute the form \033[0m" << form.getName() << std::endl;
+}
+
+
+/*			exception handle		*/
+
+const char* Bureaucrat::GradeTooHighException::what() const throw()
+{
+	return ("Grade too high\n");
+}
+
+const char* Bureaucrat::GradeTooLowException::what() const throw()
+{
+	return ("Grade too low\n");
 }

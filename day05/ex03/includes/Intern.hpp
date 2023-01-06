@@ -1,35 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PresidentialPardonForm.hpp                         :+:      :+:    :+:   */
+/*   Intern.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 07:42:32 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/02 09:06:17 by thbierne         ###   ########.fr       */
+/*   Created: 2023/01/06 09:58:57 by thbierne          #+#    #+#             */
+/*   Updated: 2023/01/06 13:11:52 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PRESIDENTIALPARDONFORM_HPP
-#define PRESIDENTIALPARDONFORM_HPP
+#ifndef INTERN_HPP
+#define INTERN_HPP
 
-#include "Form.hpp"
+#include <iostream>
+#include <string>
 
-class PresidentialPardonForm : public Form
+class Form;
+
+class Intern
 {
 
 	public:
 	
-		PresidentialPardonForm();
-		PresidentialPardonForm(const std::string target);
-		~PresidentialPardonForm();
-		PresidentialPardonForm(PresidentialPardonForm const &p);
-		void operator=(const PresidentialPardonForm &p);
+		Intern();
+		~Intern();
+		Intern(const Intern &p);
+		void operator=(const Intern &p);
 
-		void launch();
+		Form*	makeForm(std::string name, std::string target);
+
+		class CannotCreatForm : public std::exception
+		{
+			public :
+			
+				const char* what() const throw();
+		};
 
 	private:
-	
+
 };
 
 #endif

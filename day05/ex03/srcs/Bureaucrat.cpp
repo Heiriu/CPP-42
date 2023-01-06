@@ -6,21 +6,20 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/13 13:12:09 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/06 13:21:08 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:12:28 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/Bureaucrat.hpp"
-
-
+#include "../includes/Form.hpp"
 
 /* 			Constructor  			*/
 
 Bureaucrat::Bureaucrat() : _name("default"), _grade(150) 
 {
 	std::cout << "\033[0;32mBureaucrat Default constructor created\033[0m" << std::endl;
-	setGrade(150);
 }
+
 
 Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
 {
@@ -33,16 +32,7 @@ Bureaucrat::Bureaucrat(std::string const name, int grade) : _name(name)
 }
 
 
-
-/*			destrcutor			*/
-
-Bureaucrat::~Bureaucrat()
-{
-	std::cout << "\033[0;31mBureaucrat Destructor called for \033[0m" << getName() << std::endl;
-}
-
-
-/*			copy and assignment			*/
+/*			copy constructor and assignment			*/
 
 Bureaucrat::Bureaucrat(const Bureaucrat &p)
 {
@@ -58,7 +48,16 @@ void	Bureaucrat::operator=(const Bureaucrat &p)
 
 
 
-/*			display				*/
+/*			destructor			*/
+
+Bureaucrat::~Bureaucrat()
+{
+	std::cout << "\033[0;31mBureaucrat Destructor called for \033[0m" << getName() << std::endl;
+}
+
+
+
+/*			display			*/
 
 std::ostream &operator<<(std::ostream &out, const Bureaucrat &fixe)
 {
@@ -67,14 +66,12 @@ std::ostream &operator<<(std::ostream &out, const Bureaucrat &fixe)
 }
 
 
-
 /*			setter			*/
 
 void	Bureaucrat::setGrade(int grade)
 {
 	_grade = grade;
 }
-
 
 
 /*			getter			*/
@@ -90,8 +87,7 @@ std::string Bureaucrat::getName() const
 }
 
 
-
-/*			public fonction			*/
+/*		public fonctions		*/
 
 void	Bureaucrat::incrementGrade()
 {
@@ -110,6 +106,18 @@ void	Bureaucrat::decrementGrade()
 		throw Bureaucrat::GradeTooHighException();
 	_grade++;
 }
+
+void	Bureaucrat::executeForm(Form& form) const
+{
+	if (_grade <= form.getToExec())
+	{
+		std::cout << getName() << "\033[0;33m can execute the form \033[0m" << form.getName() << std::endl;
+		form.beSigned(*this);
+	}
+	else
+		std::cout << getName() << "\032[0;31m can't execute the form \033[0m" << form.getName() << std::endl;
+}
+
 
 
 /*			exception handle		*/
