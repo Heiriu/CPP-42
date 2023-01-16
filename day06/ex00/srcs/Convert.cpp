@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 13:58:05 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/10 15:58:40 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/16 10:22:39 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ Convert::Convert(std::string str) : _str(str)
 		}
 		else if (_str[0] < 30 || _str[0] > 39)
 		{
-			_toInt = static_cast<int>(strtol(_str.c_str(), NULL, 10));
+			_toInt = static_cast<long int>(strtol(_str.c_str(), NULL, 10));
 			_type = "int";
 		}
 	}
@@ -53,7 +53,7 @@ Convert::Convert(std::string str) : _str(str)
 			i++;
 		if (!_str[i])
 		{
-			_toInt = static_cast<int>(strtol(_str.c_str(), NULL, 10));
+			_toInt = static_cast<long int>(strtol(_str.c_str(), NULL, 10));
 			_type = "int";
 		}
 		else if ((_str.compare("-inf") == 0) || ( _str.compare("+inf") == 0) || (_str.compare("nan") == 0))
@@ -140,16 +140,29 @@ char	Convert::convertChar(std::string *type) const
 						throw Impossible();
 					if (_toInt < 32 || _toInt > 126)
 						throw NotPrintableChar();
-					return (_toInt);
+					return (this->_toInt);
 				}
 				case 2:
 				{
-					if ((_str.compare("-inf") == 0) || ( _str.compare("+inf") == 0) || (_str.compare("nan") == 0))
+					if ((_str.compare("-inff") == 0) || ( _str.compare("+inff") == 0) || (_str.compare("nanf") == 0))
 						throw Impossible();
+					int i = static_cast<int>(_toFloat);
+					if (i < 0 || i > 127)
+						throw Impossible();
+					if (i < 32 || i > 126)
+						throw NotPrintableChar();
+					return (i);
 				}
 				case 3:
 				{
-
+					if ((_str.compare("-inf") == 0) || ( _str.compare("+inf") == 0) || (_str.compare("nan") == 0))
+						throw Impossible();
+					int i = static_cast<int>(_toDouble);
+					if (i < 0 || i > 127)
+						throw Impossible();
+					if (i < 32 || i > 126)
+						throw NotPrintableChar();
+					return (i);
 				}
 			}
 		}
@@ -168,14 +181,28 @@ int		Convert::convertInt(std::string *type) const
 				case 0:
 					return static_cast<char>(this->_toChar);
 				case 1:
-					return (_toInt);
+				{
+					if (_toInt > 2147483647 || _toInt < -2147483648)
+						throw Impossible();
+					return (this->_toInt);
+				}
 				case 2:
 				{
-
+					if ((_str.compare("-inff") == 0) || ( _str.compare("+inff") == 0) || (_str.compare("nanf") == 0))
+						throw Impossible();
+					long int i = static_cast<long int>(_toFloat);
+					if (i >= 2147483647 || i <= -2147483648)
+						throw Impossible();
+					return (i);
 				}
 				case 3:
 				{
-
+					if ((_str.compare("-inf") == 0) || ( _str.compare("+inf") == 0) || (_str.compare("nan") == 0))
+						throw Impossible();
+					long int i = static_cast<long int>(_toDouble);
+					if (i >= 2147483647 || i <= -2147483648)
+						throw Impossible();
+					return (i);
 				}
 			}
 		}
@@ -185,6 +212,7 @@ int		Convert::convertInt(std::string *type) const
 
 float		Convert::convertFloat(std::string *type) const
 {
+	float f;
 	for (int i = 0; i < 4; i++)
 	{
 		if (type[i] == _type)
@@ -194,11 +222,20 @@ float		Convert::convertFloat(std::string *type) const
 				case 0:
 					return static_cast<float>(this->_toChar);
 				case 1:
-					return static_cast<float>(this->_toInt);
+				{
+					f = static_cast<float>(strtof(_str.c_str(), NULL));
+					return static_cast<float>(f);
+				}
 				case 2:
-					return (this->_toFloat);
+				{
+					f = static_cast<float>(strtof(_str.c_str(), NULL));
+					return (f);
+				}
 				case 3:
-					return static_cast<float>(this->_toDouble);
+				{
+					f = static_cast<float>(strtof(_str.c_str(), NULL));
+					return static_cast<float>(f);
+				}
 			}
 		}
 	}
@@ -207,6 +244,8 @@ float		Convert::convertFloat(std::string *type) const
 
 double		Convert::convertDouble(std::string *type) const
 {
+	double d;
+
 	for (int i = 0; i < 4; i++)
 	{
 		if (type[i] == _type)
@@ -216,11 +255,20 @@ double		Convert::convertDouble(std::string *type) const
 				case 0:
 					return static_cast<double>(this->_toChar);	
 				case 1:
-					return static_cast<double>(this->_toInt);
+				{
+					d = static_cast<double>(strtod(_str.c_str(), NULL));
+					return (d);
+				}
 				case 2:
-					return static_cast<double>(this->_toFloat);
+				{
+					d = static_cast<double>(strtod(_str.c_str(), NULL));
+					return (d);
+				}
 				case 3:
-					return (this->_toDouble);
+				{
+					d = static_cast<double>(strtod(_str.c_str(), NULL));
+					return (d);
+				}
 			}
 		}
 	}
@@ -256,12 +304,13 @@ const char* Convert::Impossible::what() const throw()
 std::ostream &operator<<(std::ostream &out, const Convert &str)
 {
 	std::string type[4] = { "char", "int", "float", "double"};
+	double rest;
 	try
 	{
 		char c;
 		out << "char: ";
 		c = str.convertChar(type);
-		out << c << std::endl;
+		out << "'" << c << "'" << std::endl;
 	}
 	catch (const std::exception& e)
 	{
@@ -269,7 +318,7 @@ std::ostream &operator<<(std::ostream &out, const Convert &str)
 	}
 	try
 	{
-		int i;
+		long int i;
 		out << "int: ";
 		i = str.convertInt(type);
 		out << i << std::endl;
@@ -283,7 +332,9 @@ std::ostream &operator<<(std::ostream &out, const Convert &str)
 		float f;
 		out << "float: ";
 		f = str.convertFloat(type);
-		out << f << "f" << std::endl;
+		if (modf(f, &rest) == 0)
+			out.precision(1);
+		out << std::fixed << f << "f" << std::endl;
 	}
 	catch (const std::exception& e)
 	{
@@ -294,7 +345,9 @@ std::ostream &operator<<(std::ostream &out, const Convert &str)
 		double d;
 		out << "double: ";
 		d = str.convertDouble(type);
-		out << d << std::endl;
+		if (modf(d, &rest) == 0)
+			out.precision(1);
+		out << std::fixed << d << std::endl;
 	}
 	catch (const std::exception& e)
 	{

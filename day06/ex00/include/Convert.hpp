@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 10:12:35 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/10 14:01:49 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/12 15:01:47 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #include <iostream>
 #include <string>
 #include <cstdlib>
+#include <math.h>
+#include <float.h>
+#include <cerrno>
 
 class Convert
 {
@@ -38,7 +41,7 @@ class Convert
 	std::string	_str;
 	std::string	_type;
 	char	_toChar;
-	int		_toInt;
+	long int _toInt;
 	float	_toFloat;
 	double	_toDouble;
 
@@ -64,6 +67,13 @@ class Convert
 	};
 
 	class Impossible : public std::exception
+	{
+		public:
+	
+			const char* what() const throw();
+	};
+
+	class FloatMax : public std::exception
 	{
 		public:
 	
