@@ -6,13 +6,14 @@
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/18 16:07:25 by thbierne          #+#    #+#              #
-#    Updated: 2023/01/18 16:07:30 by thbierne         ###   ########.fr        #
+#    Updated: 2023/01/20 15:59:08 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = Span
 
 SRCS = 	main.cpp		\
+		Span.cpp		\
 		
 OBJS = $(SRCS:.cpp=.o)		\
 
