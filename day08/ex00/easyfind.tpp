@@ -5,26 +5,29 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/18 15:46:04 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/20 15:47:22 by thbierne         ###   ########.fr       */
+/*   Created: 2023/01/23 15:53:44 by thbierne          #+#    #+#             */
+/*   Updated: 2023/01/24 10:01:58 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "easyfind.hpp"
 
-template <typename T>
-void easyfind(T& var, int i)
+template<typename T>
+void easyfind(T &container, int x)
 {
-	int size = var.size();
-	for (int index = 0; index < size; index++)
+	try
 	{
-		if (i == var[index])
+		typename T::iterator it = std::find(container.begin(), container.end(), x);
+    	if (it == container.end())
 		{
-			std::cout << "find " << i << " at index " << index << std::endl;
-			return ;
+        	throw Oob();
 		}
+		std::cout << "find " << x << std::endl;
 	}
-	throw Oob();
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 
 
@@ -33,4 +36,13 @@ void easyfind(T& var, int i)
 const char* Oob::what() const throw()
 {
 	return ("didn't find the number");
+}
+
+template<typename T>
+void print(T &container)
+{
+	int i = -1;
+	while (container[++i])
+		std::cout << container[i] << " ";
+	std::cout << std::endl;
 }

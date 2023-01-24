@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 14:48:16 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/18 16:03:34 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/24 10:02:31 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,13 @@
 
 int main()
 {
-	try
-	{
-		std::vector<int> v(4);
-		for (int i = 0; i < 4; i++)
-		v[i] = i + 8;
-		easyfind(v, 11);
-		easyfind(v, 8);
-		easyfind(v, 1);
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	std::vector<int> v;
+	for (int i = 1; i <= 5; i++)
+		v.push_back(i);
+	print(v);
+	easyfind(v, 0);
+	easyfind(v, 2);
+	easyfind(v, 1);
+	easyfind(v, 11);
 	return (0);
 }

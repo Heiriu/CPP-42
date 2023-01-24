@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:21:54 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/20 15:52:37 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/24 14:19:18 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <string>
 #include <cstdlib>
 #include <vector>
+#include <algorithm>
 
 class Span
 {
@@ -31,8 +32,13 @@ class Span
 		~Span();
 
 		void	addNumber(int nbr);
+		
+		void 	addIterator(const std::vector<int>::iterator& begin, const std::vector<int>::iterator& end);
+
 		void	shortestSpan();
 		void	longestSpan();
+
+		void 	printSpan();
 
 
 	private:

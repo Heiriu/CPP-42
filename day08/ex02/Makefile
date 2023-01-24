@@ -5,16 +5,16 @@
 #                                                     +:+ +:+         +:+      #
 #    By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/01/18 14:47:45 by thbierne          #+#    #+#              #
-#    Updated: 2023/01/23 10:27:23 by thbierne         ###   ########.fr        #
+#    Created: 2023/01/18 16:07:25 by thbierne          #+#    #+#              #
+#    Updated: 2023/01/24 15:36:54 by thbierne         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = Easyfind
+NAME = Mutant
 
 SRCS = 	main.cpp		\
 		
-OBJS = $(SRCS:.cpp=.o)	\
+OBJS = $(SRCS:.cpp=.o)		\
 
 CC = c++
 
