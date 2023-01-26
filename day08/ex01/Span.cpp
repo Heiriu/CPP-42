@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/20 15:32:04 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/24 14:33:22 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/26 10:09:52 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 /*			constructor			*/
 
-Span::Span()
+Span::Span() : _size(0)
 {
 	//std::cout << "\033[0;32mempty constructor created\033[0m" << std::endl;
-	_size = 0;
 }
 
 Span::Span(unsigned int size) : _size(size)
@@ -36,11 +35,12 @@ Span::Span(const Span &p)
 	_v = p._v;
 }
 
-void Span::operator=(const Span &p)
+Span& Span::operator=(const Span &p)
 {
 	//std::cout << "\033[0;33mCopy assignment call\033[0m" << std::endl;
 	_size = p._size;
 	_v = p._v;
+	return (*this);
 }
 
 
@@ -77,12 +77,12 @@ void	Span::shortestSpan()
 		throw SpanEmpty();
 	else if (_v.size() == 1)
 		throw SpanOneNumber();
-    int min = _v[1] - _v[0];
+    int min = 2147483647;
     for (std::vector<int>::iterator it = _v.begin(); it != _v.end()-1; ++it)
 	{
         int currSpan = *(it + 1) - *it;
 		if (currSpan < 0)
-			currSpan *= -1;
+			currSpan = std::abs(currSpan);
         if (currSpan < min)
             min = currSpan;
     }
@@ -95,12 +95,12 @@ void Span::longestSpan()
 		throw SpanEmpty();
 	else if (_v.size() == 1)
 		throw SpanOneNumber();
-	int max = _v[1] - _v[0];
+	int max = 0;
     for (std::vector<int>::iterator it = _v.begin(); it != _v.end()-1; ++it)
 	{
         int currSpan = *(it + 1) - *it;
 		if (currSpan < 0)
-			currSpan *= -1;
+			currSpan = std::abs(currSpan);
         if (currSpan > max)
             max = currSpan;
     }

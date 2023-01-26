@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 16:21:54 by thbierne          #+#    #+#             */
-/*   Updated: 2023/01/24 14:19:18 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/01/26 10:05:20 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <cstdlib>
 #include <vector>
 #include <algorithm>
+#include <cmath>
 
 class Span
 {
@@ -27,7 +28,7 @@ class Span
 		Span(unsigned int size);
 
 		Span(const Span &p);
-		void operator=(const Span &p);
+		Span& operator=(const Span &p);
 		
 		~Span();
 
