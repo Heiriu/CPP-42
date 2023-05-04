@@ -6,10 +6,14 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:24:26 by thbierne          #+#    #+#             */
-/*   Updated: 2023/04/25 16:42:46 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:10:53 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PMERGEME_HPP
+#define PMERGEME_HPP
+
+#include <unistd.h>			/////////////////////////////////// A DELETE
 #include <iostream>
 #include <iomanip>
 #include <string>
@@ -25,7 +29,7 @@ class PmergeMe
 	public:
 
 		PmergeMe();
-		PmergeMe(char *str);
+		PmergeMe(char *str[]);
 		~PmergeMe();
 		
 		PmergeMe(const PmergeMe &p);
@@ -35,7 +39,7 @@ class PmergeMe
 		void swap_var(int i, int mode);
 
 		void alloc_deque();
-		void get_number();
+		void get_number(char *str[]);
 		void sort_begin_deque();
 		void sort_end_deque();
 		void sort_number_deque();
@@ -47,6 +51,7 @@ class PmergeMe
 		void alloc_vector();
 		void sort_number_vector();
 		
+		int check_number();
 		void print_iterator(int mode);
 		void print_iterator_vector(int mode);
 		void display_time(int mode);
@@ -54,7 +59,6 @@ class PmergeMe
 
 	private:
 
-		std::string	_str;
 		std::clock_t _time;
 
 		std::deque<int> _deque;
@@ -67,3 +71,5 @@ class PmergeMe
 		std::vector<int> _endVector;
 		std::clock_t _timeVector;
 };
+
+#endif

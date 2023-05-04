@@ -6,9 +6,12 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 12:25:12 by thbierne          #+#    #+#             */
-/*   Updated: 2023/03/27 09:20:43 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:50:47 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef RPN_HPP
+#define RPN_HPP
 
 #include <iostream>
 #include <string>
@@ -43,3 +46,5 @@ class RPN
 		std::string		_str;
 
 };
+
+#endif

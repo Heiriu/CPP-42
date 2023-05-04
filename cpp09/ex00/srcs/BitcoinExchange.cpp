@@ -6,38 +6,54 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:35:03 by thbierne          #+#    #+#             */
-/*   Updated: 2023/04/27 15:59:24 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/05/02 12:39:23 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/BitcoinExchange.hpp"
 
+
+//			constructor			///
+
 BitcoinExchange::BitcoinExchange()
 {
-	std::cout << "\033[0;32mDefault constructor created\033[0m" << std::endl;
+	//std::cout << "\033[0;32mDefault constructor created\033[0m" << std::endl;
 }
 
 BitcoinExchange::BitcoinExchange(std::string data, char *txt) : _data(data), _txt(txt)
 {
-	std::cout << "\033[0;32mConstructor called\033[0m" << std::endl;
+	//std::cout << "\033[0;32mConstructor called\033[0m" << std::endl;
 }
+
+
+//			destructor			//
 
 BitcoinExchange::~BitcoinExchange()
 {
-	std::cout << "\033[0;31mDefault destructor called\033[0m" << std::endl;
+	//std::cout << "\033[0;31mDefault destructor called\033[0m" << std::endl;
 }
+
+
+//			copy and assignment			//
 
 BitcoinExchange::BitcoinExchange(const BitcoinExchange &p)
 {
-	std::cout << "\033[0;32mcopy constructor called\033[0m" << std::endl;
-	(void)p;
+	//std::cout << "\033[0;32mcopy constructor called\033[0m" << std::endl;
+	_data = p._data;
+	_txt = p._txt;
+	_list = p._list;
 }
 
 void BitcoinExchange::operator=(const BitcoinExchange &p)
 {
-	std::cout << "\033[0;32mCopy assignment call\033[0m" << std::endl;
-	(void)p;
+	//std::cout << "\033[0;32mCopy assignment call\033[0m" << std::endl;
+	_data = p._data;
+	_txt = p._txt;
+	_list = p._list;
 }
+
+
+//			getter			//
 
 std::string BitcoinExchange::getData()
 {
@@ -48,6 +64,9 @@ std::string BitcoinExchange::getTxt()
 {
 	return (_txt);
 }
+
+
+//			fonction			//
 
 int		BitcoinExchange::check_line(std::string contenu)
 {
@@ -95,9 +114,38 @@ int		BitcoinExchange::check_line(std::string contenu)
 	}
 	if (!contenu[i])
 	{
+		if (check_var_date(contenu) == 1)
+			return (3);
 		return (0);
 	}
 	return (1);
+}
+
+int		BitcoinExchange::check_var_date(std::string contenu)
+{
+	int i;
+	int count;
+	int tmp;
+
+	i = 0;
+	count = 0;
+	while (count < 3)
+	{
+		if (contenu[i] < '0' || contenu[i] > '9')
+			return (1);
+		tmp = atoi(&contenu[i]);
+		if ((tmp < 2009 || tmp > 2022) && count == 0)
+			return (1);
+		else if ((tmp < 0 || tmp > 12) && count == 1)
+			return (1);
+		else if ((tmp < 0 || tmp > 31) && count == 2)
+			return (1);
+		while (contenu[i] >= '0' && contenu[i] <= '9')
+			i++;
+		i++;
+		count++;
+	}
+	return (0);
 }
 
 void	BitcoinExchange::alloc_list()
@@ -148,9 +196,39 @@ long double BitcoinExchange::find_lowest_data(std::string contenu)
 		{
 			contenu[9] = '1';
 			contenu[8] = '3';
+			contenu[6]--;
+		}
+		else if (contenu[5] > '0')
+		{
+			contenu[9] = '1';
+			contenu[8] = '3';
+			contenu[6] = '9';
+			contenu[5]--;
+		}
+		else if (contenu[3] > '0')
+		{
+			contenu[9] = '1';
+			contenu[8] = '3';
+			contenu[6] = '2';
+			contenu[5] = '1';
+			contenu[3]--;
+		}
+		else if (contenu[2] > '0')
+		{
+			contenu[9] = '1';
+			contenu[8] = '3';
+			contenu[6] = '2';
+			contenu[5] = '1';
+			contenu[3] = '9';
+			contenu[2]--;
+		}
+		else if (contenu[3] < '8' && contenu[2] == '0')
+		{
+				std::cout << "Error: cannot find data" << std::endl;
+				return (-1);
 		}
 	}
-	return (0);
+	return (-1);
 }
 
 long double	BitcoinExchange::compare_vector(std::string contenu)
@@ -187,7 +265,7 @@ void	BitcoinExchange::find_result(long double result, std::string contenu)
 	long double nbr;
 
 	nbr = compare_vector(contenu);
-	if (nbr == 0)
+	if (nbr == -1)
 		return ;
 	std::cout << result << " = " << (result * nbr) << std::endl;
 }
@@ -206,7 +284,7 @@ void	BitcoinExchange::print_result(std::string contenu)
 	str = contenu.c_str();
 	std::istringstream iss(&str[i]);
 	iss >> result;
-	if (result > 1000 || result < 0)
+	if (result >= 1000 || result <= 0)
 		std::cout << "Error: too large number" << std::endl;
 	else
 		find_result(result, contenu);
@@ -235,6 +313,8 @@ void	BitcoinExchange::init()
 				std::cout << "bad input => " << contenu << std::endl;
 			if (i == 2)
 				std::cout << "not a positive number." << std::endl;
+			if (i == 3)
+				std::cout << "wrong number use for date." << std::endl;
 		}
 		else
 			print_result(contenu);

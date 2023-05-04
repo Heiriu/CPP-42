@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:44:47 by thbierne          #+#    #+#             */
-/*   Updated: 2023/04/27 15:59:40 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/04/28 14:42:27 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_file(std::string data, std::string txt)
 			std::cerr << "Cannot open the .txt from the argument" << std::endl;
 		if (fdata)
 			fdata.close();
-		else if (ftxt)
+		if (ftxt)
 			ftxt.close();
 		return (-1);
 	}
@@ -46,7 +46,7 @@ int	main(int argc, char *argv[])
 		std::cout << "wrong number of arguments use" << std::endl;
 		return (1);
 	}
-	std::string data = "../cpp_09/data.csv";
+	std::string data = "data/data.csv";
 	BitcoinExchange bce(data, argv[1]);
 	if (check_file(bce.getData(), bce.getTxt()) == -1)
 		return (1);

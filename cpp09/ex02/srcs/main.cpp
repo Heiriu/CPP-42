@@ -6,38 +6,45 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 11:21:51 by thbierne          #+#    #+#             */
-/*   Updated: 2023/03/29 13:13:33 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:22:29 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/PmergeMe.hpp"
 
-int		check_str(char *str)
+int		check_str(char *str[])
 {
 	int i;
+	int y;
 
 	i = 0;
-	while (str[i])
+	y = 1;
+	while (str[y])
 	{
-		if ((str[i] < '0' || str[i] > '9') && str[i] != ' ')
+		i = 0;
+		while (str[y][i])
 		{
-			std::cout << "Error: only positive integer needed in the argument" << std::endl;
-			return (1);
+			if ((str[y][i] < '0' || str[y][i] > '9') && str[y][i] != ' ')
+			{
+				std::cout << "\033[0;31mError: only positive integer needed in the argument\033[0m" << std::endl;
+				return (1);
+			}
+			i++;
 		}
-		i++;
+		y++;
 	}
 	return (0);
 }
 
 int	main(int argc ,char **argv)
 {
-	if (argc != 2)
+	if (argc == 1)
 	{
-		std::cout << "Error: wrong number of argument" << std::endl;
+		std::cout << "\033[0;31mError: wrong number of argument\033[0m" << std::endl;
 		return (1);
 	}
-	if (check_str(argv[1]) == 1)
+	if (check_str(argv) == 1)
 		return (1);
-	PmergeMe merge(argv[1]);
+	PmergeMe merge(argv);
 	merge.init();
 }

@@ -6,7 +6,7 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/22 13:13:46 by thbierne          #+#    #+#             */
-/*   Updated: 2023/03/31 13:02:02 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:17:44 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,17 @@ RPN::~RPN()
 RPN::RPN(const RPN &p)
 {
 	//std::cout << "\033[0;32mcopy constructor called\033[0m" << std::endl;
-	(void)p;
+	_i = p._i;
+	_stack = p._stack;
+	_str = p._str;
 }
 
 void RPN::operator=(const RPN &p)
 {
 	//std::cout << "\033[0;32mCopy assignment call\033[0m" << std::endl;
-	(void)p;
+	_i = p._i;
+	_stack = p._stack;
+	_str = p._str;
 }
 
 
@@ -59,6 +63,12 @@ void RPN::init()
 	{
 		while (_str[_i] == ' ')
 			_i++;
+		if (_str[_i] == '-' && (_str[_i + 1] >= '0' && _str[_i + 1] <= '9'))
+		{
+			add_nbr_stack();
+			while (_str[_i] >= '0' && _str[_i] <= '9')
+				_i++;
+		}
 		if (_str[_i] >= '0' && _str[_i] <= '9')
 		{
 			add_nbr_stack();
@@ -80,6 +90,8 @@ void RPN::init()
 	}
 	if (_stack.size() == 1)
 		std::cout << _stack.top() << std::endl;
+	else if (_stack.size() == 0)
+		std::cout << "\033[0;31mError: number not found in arg\033[0m" << std::endl;
 	else
 		std::cout << "\033[0;31mError: number left in the stack\033[0m" << std::endl;
 }
@@ -90,7 +102,14 @@ void		RPN::add_nbr_stack()
 	const char *str;
 
 	str = _str.c_str();
-	nbr = atoi(&str[_i]);
+	if (str[_i] == '-')
+	{
+		_i++;
+		nbr = atoi(&str[_i]);
+		nbr *= -1;
+	}
+	else
+		nbr = atoi(&str[_i]);
 	_stack.push(nbr);
 }
 
@@ -106,14 +125,9 @@ int		RPN::plus_minus_stack()
 		snbr = _stack.top();
 		_stack.pop();
 		if (_str[_i] == '+')
-			_stack.push(fnbr + snbr);
+			_stack.push(snbr + fnbr);
 		else if (_str[_i] == '-')
-		{
-			if (snbr > fnbr)
-				_stack.push(snbr - fnbr);
-			else
-				_stack.push(fnbr - snbr);
-		}
+			_stack.push(snbr - fnbr);
 	}
 	else
 	{
@@ -135,9 +149,14 @@ int		RPN::multiply_divide_stack()
 		snbr = _stack.top();
 		_stack.pop();
 		if (_str[_i] == '*')
-			_stack.push(fnbr * snbr);
+			_stack.push(snbr * fnbr);
 		else if (_str[_i] == '/')
-			_stack.push(fnbr / snbr);
+		{
+			if (fnbr == 0 || snbr == 0)
+				_stack.push(0);
+			else
+				_stack.push(snbr / fnbr);
+		}
 	}
 	else
 	{

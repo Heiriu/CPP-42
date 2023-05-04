@@ -6,9 +6,12 @@
 /*   By: thbierne <thbierne@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/14 15:28:46 by thbierne          #+#    #+#             */
-/*   Updated: 2023/04/27 15:59:33 by thbierne         ###   ########.fr       */
+/*   Updated: 2023/05/02 10:50:09 by thbierne         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#ifndef BITCOINEXCHANGE_HPP
+#define BITCOINEXCHANGE_HPP
 
 #include <iostream>
 #include <string>
@@ -37,6 +40,7 @@ class BitcoinExchange
 		std::string getData();
 		std::string getTxt();
 
+		int	check_var_date(std::string contenu);
 		int check_line(std::string contenu);
 		int	check_var(std::string contenu);
 		void init();
@@ -48,3 +52,5 @@ class BitcoinExchange
 		std::list<std::string> _list;
 
 };
+
+#endif
